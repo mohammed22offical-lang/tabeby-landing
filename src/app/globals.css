@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --teal-start: #0fb9b1;
+  --teal-end: #0aa79d;
+  --accent-orange: #f5b971;
+  --bg-subtle: #f1f3f5;
+  --bg-card: #f8f9fa;
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --border-subtle: #e2e8f0;
+}
+
+.dark {
+  --bg-subtle: #374151;
+  --bg-card: #4b5563;
+  --text-primary: #f3f4f6;
+  --text-secondary: #d1d5db;
+  --border-subtle: #4b5563;
+}
+
+html {
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  @apply antialiased bg-[var(--bg-subtle)] text-[var(--text-primary)];
+  overflow-x: hidden;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  -webkit-tap-highlight-color: transparent;
+}
+
+html.locale-ar body {
+  font-family: var(--font-cairo), system-ui, sans-serif;
+}
+
+html.locale-en body {
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+html.locale-ku body {
+  font-family: var(--font-kurdish), var(--font-cairo), system-ui, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .safe-area-padding {
+    padding-left: env(safe-area-inset-left, 0);
+    padding-right: env(safe-area-inset-right, 0);
+    padding-top: env(safe-area-inset-top, 0);
+  }
+  .mobile-menu-top {
+    top: calc(3.5rem + env(safe-area-inset-top, 0px));
+  }
+  @media (min-width: 640px) {
+    .mobile-menu-top {
+      top: calc(3.75rem + env(safe-area-inset-top, 0px));
+    }
+  }
+}
+
+@media (hover: none) {
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+}
