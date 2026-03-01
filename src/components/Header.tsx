@@ -21,8 +21,13 @@ export default function Header() {
   const { theme } = useTheme();
   const t = content[locale].nav;
   const [menuOpen, setMenuOpen] = useState(false);
+  const [localeOpen, setLocaleOpen] = useState(false);
 
-  const closeMenu = useCallback(() => setMenuOpen(false), []);
+  const closeMenu = useCallback(() => {
+    setMenuOpen(false);
+    setLocaleOpen(false);
+  }, []);
+  const closeLocale = useCallback(() => setLocaleOpen(false), []);
 
   const base = pathname || "/";
   const themeHref = (t: "light" | "dark") => `${base}?theme=${t}`;
@@ -75,21 +80,48 @@ export default function Header() {
             >
               {theme === "dark" ? "☀️" : "🌙"}
             </Link>
-            {(["ar", "en", "ku"] as const).map((loc) => (
-              <Link
-                key={loc}
-                href={localeHref(loc)}
-                title={loc === "ar" ? "العربية" : loc === "en" ? "English" : "کوردی"}
-                className={`min-w-[40px] min-h-[40px] sm:min-w-[44px] sm:min-h-[44px] flex items-center justify-center px-2 py-2 rounded-lg text-xs sm:text-sm font-medium touch-manipulation transition ${
-                  locale === loc
-                    ? "bg-teal-100 dark:bg-teal-900/50 text-teal-600 dark:text-teal-400"
-                    : "text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-gray-100 dark:hover:bg-gray-600"
-                }`}
-                aria-label={loc === "ar" ? "العربية" : loc === "en" ? "English" : "کوردی"}
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setLocaleOpen((o) => !o)}
+                className="min-w-[40px] min-h-[40px] sm:min-w-[44px] sm:min-h-[44px] flex items-center justify-center gap-0.5 px-2 py-2 rounded-lg text-xs sm:text-sm font-medium touch-manipulation transition bg-teal-100 dark:bg-teal-900/50 text-teal-600 dark:text-teal-400 hover:bg-teal-200 dark:hover:bg-teal-800/50"
+                aria-label={locale === "ar" ? "العربية" : locale === "en" ? "English" : "کوردی"}
+                aria-expanded={localeOpen}
+                aria-haspopup="true"
               >
-                {loc === "ar" ? "ع" : loc === "en" ? "En" : "Ku"}
-              </Link>
-            ))}
+                {locale === "ar" ? "ع" : locale === "en" ? "En" : "Ku"}
+                <span className="text-[10px] sm:text-xs opacity-80 ml-0.5">▼</span>
+              </button>
+              {localeOpen && (
+                <>
+                  <div
+                    className="fixed inset-0 z-40"
+                    aria-hidden
+                    onClick={closeLocale}
+                  />
+                  <div
+                    role="menu"
+                    className="absolute right-0 top-full mt-1 z-50 min-w-[140px] rounded-xl bg-[var(--bg-card)] dark:bg-gray-800 border border-[var(--border-subtle)] dark:border-gray-600 shadow-lg py-1 overflow-hidden"
+                  >
+                    {(["ar", "en", "ku"] as const).map((loc) => (
+                      <Link
+                        key={loc}
+                        href={localeHref(loc)}
+                        role="menuitem"
+                        onClick={closeLocale}
+                        className={`block px-4 py-2.5 text-sm font-medium touch-manipulation transition ${
+                          locale === loc
+                            ? "bg-teal-100 dark:bg-teal-900/50 text-teal-600 dark:text-teal-400"
+                            : "text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                        }`}
+                      >
+                        {loc === "ar" ? "العربية" : loc === "en" ? "English" : "کوردی"}
+                      </Link>
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
           </div>
           <Link
             href="#for-clinics"
@@ -108,7 +140,7 @@ export default function Header() {
 
           <button
             type="button"
-            onClick={() => setMenuOpen((o) => !o)}
+            onClick={() => { setLocaleOpen(false); setMenuOpen((o) => !o); }}
             className="md:hidden min-w-[40px] min-h-[40px] flex flex-col items-center justify-center gap-1.5 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition touch-manipulation flex-shrink-0"
             aria-label={menuOpen ? "إغلاق القائمة" : "فتح القائمة"}
             aria-expanded={menuOpen}
