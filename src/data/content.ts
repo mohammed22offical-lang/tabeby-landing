@@ -8,6 +8,7 @@ export const content = {
       features: "المميزات",
       forClinics: "للعيادات",
       earlyAccess: "انضم مبكراً",
+      earlyAccessShort: "انضم",
       backToTop: "العودة للأعلى",
     },
     hero: {
@@ -105,6 +106,7 @@ export const content = {
       features: "Features",
       forClinics: "For Clinics",
       earlyAccess: "Early Access",
+      earlyAccessShort: "Join",
       backToTop: "Back to top",
     },
     hero: {
@@ -202,6 +204,7 @@ export const content = {
       features: "تایبەتمەندییەکان",
       forClinics: "بۆ کلینیکەکان",
       earlyAccess: "بەشداربوونی زوو",
+      earlyAccessShort: "بەشداری",
       backToTop: "گەڕانەوە بۆ سەرەوە",
     },
     hero: {

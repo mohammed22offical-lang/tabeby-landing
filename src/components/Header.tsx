@@ -30,7 +30,7 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[var(--bg-card)]/95 dark:bg-gray-800/95 backdrop-blur-md border-b border-[var(--border-subtle)] dark:border-gray-600 safe-area-padding">
-      <div dir="ltr" className="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 sm:py-4 flex items-center justify-between gap-3 text-left">
+      <div dir="ltr" className="max-w-6xl mx-auto px-3 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-2 sm:gap-3 text-left min-w-0">
         <Link
           href="/"
           className="flex items-center gap-2.5 sm:gap-3 min-w-0 shrink-0"
@@ -49,7 +49,7 @@ export default function Header() {
               unoptimized
             />
           </span>
-          <span className="text-lg sm:text-2xl font-bold bg-gradient-to-r from-teal-500 to-teal-600 bg-clip-text text-transparent tracking-tight truncate">
+          <span className="text-base sm:text-2xl font-bold bg-gradient-to-r from-teal-500 to-teal-600 bg-clip-text text-transparent tracking-tight truncate">
             Tabeby
           </span>
         </Link>
@@ -66,11 +66,11 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-          <div className="flex items-center rounded-xl bg-gray-100/80 dark:bg-gray-700/50 p-1 gap-0.5">
+        <div className="flex items-center gap-1.5 sm:gap-3 shrink-0 min-w-0">
+          <div className="flex items-center rounded-lg sm:rounded-xl bg-gray-100/80 dark:bg-gray-700/50 p-0.5 sm:p-1 gap-0.5">
             <Link
               href={themeHref(theme === "dark" ? "light" : "dark")}
-              className="min-w-[44px] min-h-[44px] flex items-center justify-center p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-gray-100 dark:hover:bg-gray-600 transition touch-manipulation"
+              className="min-w-[40px] min-h-[40px] sm:min-w-[44px] sm:min-h-[44px] flex items-center justify-center p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-gray-100 dark:hover:bg-gray-600 transition touch-manipulation"
               aria-label={theme === "dark" ? "وضع فاتح" : "وضع داكن"}
             >
               {theme === "dark" ? "☀️" : "🌙"}
@@ -80,7 +80,7 @@ export default function Header() {
                 key={loc}
                 href={localeHref(loc)}
                 title={loc === "ar" ? "العربية" : loc === "en" ? "English" : "کوردی"}
-                className={`min-w-[44px] min-h-[44px] flex items-center justify-center px-2 py-2 rounded-lg text-sm font-medium touch-manipulation transition ${
+                className={`min-w-[40px] min-h-[40px] sm:min-w-[44px] sm:min-h-[44px] flex items-center justify-center px-2 py-2 rounded-lg text-xs sm:text-sm font-medium touch-manipulation transition ${
                   locale === loc
                     ? "bg-teal-100 dark:bg-teal-900/50 text-teal-600 dark:text-teal-400"
                     : "text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-gray-100 dark:hover:bg-gray-600"
@@ -100,7 +100,7 @@ export default function Header() {
           </Link>
           <a
             href="#join-patients"
-            className="inline-flex items-center justify-center rounded-xl px-4 sm:px-5 py-3 min-h-[44px] text-sm font-semibold bg-gradient-to-r from-teal-500 to-teal-600 text-white shadow-soft hover:shadow-soft-lg hover:opacity-95 active:opacity-90 transition touch-manipulation"
+            className="inline-flex items-center justify-center rounded-lg sm:rounded-xl px-2.5 sm:px-5 py-2.5 sm:py-3 min-h-[40px] sm:min-h-[44px] text-xs sm:text-sm font-semibold bg-gradient-to-r from-teal-500 to-teal-600 text-white shadow-soft hover:shadow-soft-lg hover:opacity-95 active:opacity-90 transition touch-manipulation whitespace-nowrap"
             onClick={closeMenu}
           >
             {t.earlyAccess}
@@ -109,7 +109,7 @@ export default function Header() {
           <button
             type="button"
             onClick={() => setMenuOpen((o) => !o)}
-            className="md:hidden min-w-[44px] min-h-[44px] flex flex-col items-center justify-center gap-1.5 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition touch-manipulation"
+            className="md:hidden min-w-[40px] min-h-[40px] flex flex-col items-center justify-center gap-1.5 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition touch-manipulation flex-shrink-0"
             aria-label={menuOpen ? "إغلاق القائمة" : "فتح القائمة"}
             aria-expanded={menuOpen}
           >

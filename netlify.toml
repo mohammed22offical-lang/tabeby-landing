@@ -1,0 +1,11 @@
+# Netlify — Next.js
+# https://docs.netlify.com/frameworks/next-js/
+
+# Netlify يختار إعدادات Next.js تلقائياً عند ربط المستودع.
+# يمكنك أيضاً ضبط Build command في لوحة Netlify: npm run build
+
+[build]
+  command = "npm run build"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
